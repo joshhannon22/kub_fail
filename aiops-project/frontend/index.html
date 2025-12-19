@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIOps Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #response {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AIOps Demo Application</h1>
+        <p>Test the backend API endpoints:</p>
+        
+        <button onclick="callAPI('/api/health')">Health Check</button>
+        <button onclick="callAPI('/api/data')">Get Data</button>
+        <button onclick="callAPI('/api/heavy')">Heavy Load</button>
+        <button onclick="callAPI('/api/error')">Trigger Error</button>
+        
+        <div id="response"></div>
+    </div>
+
+    <script>
+        const BACKEND_URL = 'http://localhost:8080';
+        
+        async function callAPI(endpoint) {
+            const responseDiv = document.getElementById('response');
+            responseDiv.textContent = 'Loading...';
+            
+            try {
+                const response = await fetch(BACKEND_URL + endpoint);
+                const data = await response.json();
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                responseDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>

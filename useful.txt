@@ -1,0 +1,10 @@
+Creating a cluster
+    - kind create cluster --name aiops-demo --config kind-config.yaml
+
+Check Cluster running
+    joshhannon@Mac-6451 kub_fail % kubectl cluster-info
+    Kubernetes control plane is running at https://127.0.0.1:50626
+    CoreDNS is running at https://127.0.0.1:50626/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
